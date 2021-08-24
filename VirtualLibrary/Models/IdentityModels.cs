@@ -33,22 +33,7 @@ namespace VirtualLibrary.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
 
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Book>()
-                .HasMany<Author>(a => a.authors)
-                .WithMany(b => b.books)
-                .Map(ba =>
-                {
-                    ba.MapLeftKey("BookId");
-                    ba.MapRightKey("AuthorId");
-                    ba.ToTable("BookAuthor");
-                });
-        }
+        public DbSet<BookAuthors> BookAuthors { get; set; }
 
     }
 }
